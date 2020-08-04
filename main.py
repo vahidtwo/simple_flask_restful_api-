@@ -15,7 +15,7 @@ migrate = Migrate(app, db)
 
 @app.route('/test')
 def hello():
-    return 'hello'
+    return 'hello im running'
 
 
 from post import post_blueprint
