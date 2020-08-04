@@ -31,9 +31,11 @@ def create_post():
 
 
 @post_blueprint.route('/<int:id>', methods=['GET'])
-def get_by_id_post(id):
+def get_by_post_id(id):
     try:
-        post = Post.query.get(Post.id == id)
+        print(id)
+        post = Post.query.get(id)
+        print(2)
         return jsonify({'id': post.id, 'title': post.title, 'body': post.body}), 200
     except Exception as e:
         db.session.rollback()
@@ -41,7 +43,7 @@ def get_by_id_post(id):
 
 
 @post_blueprint.route('/<int:id>', methods=['DELETE'])
-def delete_by_id_post(id):
+def delete_by_post_id(id):
     try:
         post = Post.query.filter_by(id == id).first_or_404()
         db.session.delete(post)
@@ -53,7 +55,7 @@ def delete_by_id_post(id):
 
 
 @post_blueprint.route('/<int:id>', methods=['PUT'])
-def delete_by_id_post(id):
+def update_by_post_id(id):
     try:
         data = request.get_json()
         post = Post.query.filter_by(id == id).first_or_404()
