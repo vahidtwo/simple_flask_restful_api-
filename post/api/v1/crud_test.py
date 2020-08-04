@@ -33,9 +33,7 @@ def create_post():
 @post_blueprint.route('/<int:id>', methods=['GET'])
 def get_by_post_id(id):
     try:
-        print(id)
         post = Post.query.get(id)
-        print(2)
         return jsonify({'id': post.id, 'title': post.title, 'body': post.body}), 200
     except Exception as e:
         db.session.rollback()
